@@ -6,7 +6,6 @@ import {
   FormControl,
   FormLabel,
   Input,
-  Select,
   Textarea,
   NumberInput,
   NumberInputField,
@@ -16,116 +15,13 @@ import {
   RadioGroup,
   Radio,
   Stack,
-  Modal,
-  ModalOverlay,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Flex,
 } from '@chakra-ui/react';
-
-// 都道府県を選ぶコンポーネント
-const PrefectureSelect = ({ value, onChange }) => {
-  const prefectures = [
-    '北海道',
-    '青森県',
-    '岩手県',
-    '宮城県',
-    '秋田県',
-    '山形県',
-    '福島県',
-    '茨城県',
-    '栃木県',
-    '群馬県',
-    '埼玉県',
-    '千葉県',
-    '東京都',
-    '神奈川県',
-    '新潟県',
-    '富山県',
-    '石川県',
-    '福井県',
-    '山梨県',
-    '長野県',
-    '岐阜県',
-    '静岡県',
-    '愛知県',
-    '三重県',
-    '滋賀県',
-    '京都府',
-    '大阪府',
-    '兵庫県',
-    '奈良県',
-    '和歌山県',
-    '鳥取県',
-    '島根県',
-    '岡山県',
-    '広島県',
-    '山口県',
-    '徳島県',
-    '香川県',
-    '愛媛県',
-    '高知県',
-    '福岡県',
-    '佐賀県',
-    '長崎県',
-    '熊本県',
-    '大分県',
-    '宮崎県',
-    '鹿児島県',
-    '沖縄県',
-  ];
-
-  return (
-    <FormControl id="prefecture" mb={4}>
-      <FormLabel>出身</FormLabel>
-      <Select
-        placeholder="都道府県を選んでください"
-        value={value}
-        onChange={onChange}
-      >
-        {prefectures.map((pref, index) => (
-          <option key={index} value={pref}>
-            {pref}
-          </option>
-        ))}
-      </Select>
-    </FormControl>
-  );
-};
-
-// 確認モーダルコンポーネント
-const ConfirmationModal = ({ isOpen, onClose, submittedData, onConfirm }) => {
-  return (
-    <Modal isOpen={isOpen} onClose={onClose} isCentered>
-      <ModalOverlay />
-      <ModalContent>
-        <ModalHeader>登録確認</ModalHeader>
-        <ModalBody>
-          <Box textAlign="left">
-            <Box mb={4}>氏名: {submittedData.fullName}</Box>
-            <Box mb={4}>性別: {submittedData.gender}</Box>
-            <Box mb={4}>年齢: {submittedData.age}</Box>
-            <Box mb={4}>出身: {submittedData.prefecture}</Box>
-            <Box mb={4}>自己PR: {submittedData.selfIntro}</Box>
-          </Box>
-        </ModalBody>
-        <ModalFooter>
-          <Button colorScheme="gray" onClick={onClose} marginRight={4}>
-            キャンセル
-          </Button>
-          <Button colorScheme="red" onClick={onConfirm}>
-            登録
-          </Button>
-        </ModalFooter>
-      </ModalContent>
-    </Modal>
-  );
-};
+import PrefectureSelect from './PrefectureSelect'; // 都道府県選択コンポーネント
+import ConfirmationModal from './ConfirmationModal'; // 確認モーダル
 
 function App() {
-  const [name, setName] = useState({ firstName: '', lastName: '' }); //.
+  const [name, setName] = useState({ firstName: '', lastName: '' });
   const [gender, setGender] = useState('');
   const [age, setAge] = useState(1);
   const [prefecture, setPrefecture] = useState('');
